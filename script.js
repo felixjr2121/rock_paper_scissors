@@ -10,9 +10,11 @@ function game() {
     for (let i = 1; i <= 5; i++) {
         const computerSelection = getComputerChoice();
         const playerSelection = prompt("Rock, paper, or scissors?", ""); 
-        
+
         function playRound(playerSelection, computerSelection) {
+
             const playerSelectionLower = playerSelection.toLowerCase();
+
             switch (true) {
                 case (playerSelectionLower == "rock" && computerSelection == "scissors"):
                     playerWins++
