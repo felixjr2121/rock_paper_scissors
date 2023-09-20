@@ -1,72 +1,65 @@
-//computer selection function
 function getComputerChoice() {
     const choices = ["rock", "paper", "scissors"];
     const randomIndex = Math.floor(Math.random() * choices.length);
     return choices[randomIndex];
 }
 
-function game() {
-    let playerWins = 0;
-    let computerWins = 0;
-    for (let i = 1; i <= 5; i++) {
-        const computerSelection = getComputerChoice();
-        const playerSelection = prompt("Rock, paper, or scissors?", ""); 
+function playRound(playerChoice, computerChoice) {
+    switch (true) {
+        case (playerChoice == "rock" && computerChoice == "scissors"):
+            console.log("You won! Rock beats scissors!");
+            break;
 
-        function playRound(playerSelection, computerSelection) {
+        case (playerChoice == "paper" && computerChoice == "rock"):
+            console.log("You won! Paper beats rock!");
+            break;
 
-            const playerSelectionLower = playerSelection.toLowerCase();
+        case (playerChoice == "scissors" && computerChoice == "paper"):
+            console.log("You won! Scissors beats paper!");
+            break;
 
-            switch (true) {
-                case (playerSelectionLower == "rock" && computerSelection == "scissors"):
-                    playerWins++
-                    return ("You won! Rock beats scissors!");
-                    break;
+        case (playerChoice == "rock" && computerChoice == "paper"):
+            console.log("You lost! Rock loses to paper.");
+            break;
 
-                case (playerSelectionLower == "paper" && computerSelection == "rock"):
-                    playerWins++
-                    return ("You won! Paper beats rock!");
-                    break;
+        case (playerChoice == "paper" && computerChoice == "scissors"):
+            console.log("You lost! Paper loses to scissors.");
+            break;
 
-                case (playerSelectionLower == "scissors" && computerSelection == "paper"):
-                    playerWins++
-                    return ("You won! Scissors beats paper!");
-                    break;
-            
-                case (playerSelectionLower == "rock" && computerSelection == "paper"):
-                    computerWins++
-                    return ("You lost! Rock loses to paper!");
-                    break;
+        case (playerChoice == "scissors" && computerChoice == "rock"):
+            console.log("You lost! Scissors loses to rock.");
+            break;
 
-                case (playerSelectionLower == "paper" && computerSelection == "scissors"):
-                    computerWins++
-                    return ("You lost! Paper loses to scissors!");
-                    break;
-
-                case (playerSelectionLower == "scissors" && computerSelection == "rock"):
-                    computerWins++
-                    return ("You lost! Scissors loses to rock!");
-                    break;
-
-                case (playerSelectionLower == computerSelection):
-                    return ("It's a tie!");
-                    break;
-
-                default:
-                    return ("You must enter rock, paper, or scissors.");
-            }
-        }
-        console.log(playRound(playerSelection,computerSelection));
-    }
-    
-    console.log(`Your points: ${playerWins}`);
-    console.log(`The computer's points: ${computerWins}`);
-    if (playerWins > computerWins) {
-        console.log("You won the game!");
-    } else if (playerWins < computerWins) {
-        console.log("You lost the game :(");
-    } else if (playerWins == computerWins) {
-        console.log("The game was a tie!");
+        case (playerChoice == computerChoice):
+            console.log("It's a tie!");
+            break;
     }
 }
 
-game();
+/*function getPlayerChoice(event) {
+    let playerChoice;
+    if (event.target.classList.contains("rock")) {
+        playerChoice = "rock";
+    } else if (event.target.classList.contains("paper")) {
+        playerChoice = "paper";
+    } else if (event.target.classList.contains("scissors")) {
+        playerChoice = "scissors";
+    }
+}*/
+
+const buttons = document.querySelectorAll("button");
+
+buttons.forEach((button) => {
+    button.addEventListener("click", function(event) {
+        let playerChoice;
+        if (event.target.classList.contains("rock")) {
+            playerChoice = "rock";
+        } else if (event.target.classList.contains("paper")) {
+            playerChoice = "paper";
+        } else if (event.target.classList.contains("scissors")) {
+            playerChoice = "scissors";
+        }
+        const computerChoice = getComputerChoice();
+        playRound(playerChoice, computerChoice);
+    })
+});
