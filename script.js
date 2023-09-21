@@ -5,42 +5,51 @@ function getComputerChoice() {
 }
 
 function playRound(playerChoice, computerChoice) {
-    const container = document.querySelector("#container");
-    const para = document.createElement('p');
+    const score = document.querySelector("#score");
+    const result = document.querySelector("#result");
+
     switch (true) {
         case (playerChoice == "rock" && computerChoice == "scissors"):
-            para.textContent = "You won! Rock beats scissors!";
+            ++playerWins
+            result.textContent = "You won! Rock beats scissors!";
             break;
 
         case (playerChoice == "paper" && computerChoice == "rock"):
-            para.textContent = "You won! Paper beats rock!";
+            ++playerWins
+            result.textContent = "You won! Paper beats rock!";
             break;
 
         case (playerChoice == "scissors" && computerChoice == "paper"):
-            para.textContent = "You won! Scissors beats paper!";
+            ++playerWins
+            result.textContent = "You won! Scissors beats paper!";
             break;
 
         case (playerChoice == "rock" && computerChoice == "paper"):
-            para.textContent = "You lost! Rock loses to paper.";
+            ++computerWins
+            result.textContent = "You lost! Rock loses to paper.";
             break;
 
         case (playerChoice == "paper" && computerChoice == "scissors"):
-            para.textContent = "You lost! Paper loses to scissors.";
+            ++computerWins
+            result.textContent = "You lost! Paper loses to scissors.";
             break;
 
         case (playerChoice == "scissors" && computerChoice == "rock"):
-            para.textContent = "You lost! Scissors loses to rock.";
+            ++computerWins
+            result.textContent = "You lost! Scissors loses to rock.";
             break;
 
         case (playerChoice == computerChoice):
-            para.textContent = "It's a tie!";
+            result.textContent = "It's a tie!";
             break;
     }
-    container.appendChild(para);
+    score.textContent = `Your score: ${playerWins} Computer score: ${computerWins}`;
 }
 
 
 const buttons = document.querySelectorAll("button");
+let playerWins = 0;
+let computerWins = 0;
 
 buttons.forEach((button) => {
     button.addEventListener("click", function(event) {
