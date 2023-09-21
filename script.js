@@ -4,13 +4,8 @@ function getComputerChoice() {
     return choices[randomIndex];
 }
 
-function endGame() {
-    if (playerWins == 5) {
-        result.textContent = "Game over! You win!";
-    } else if (computerWins == 5) {
-        result.textContent = "Game over! You lose :(";
-    }   
-}
+let playerWins = 0;
+let computerWins = 0;
 
 function playRound(playerChoice, computerChoice) {
     const score = document.querySelector("#score");
@@ -56,10 +51,15 @@ function playRound(playerChoice, computerChoice) {
     endGame();
 }
 
+function endGame() {
+    if (playerWins == 5) {
+        result.textContent = "Game over! You win!";
+    } else if (computerWins == 5) {
+        result.textContent = "Game over! You lose :(";
+    }   
+}
 
 const buttons = document.querySelectorAll("button");
-let playerWins = 0;
-let computerWins = 0;
 
 buttons.forEach((button) => {
     button.addEventListener("click", function(event) {
