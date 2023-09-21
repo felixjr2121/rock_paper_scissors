@@ -4,6 +4,14 @@ function getComputerChoice() {
     return choices[randomIndex];
 }
 
+function endGame() {
+    if (playerWins == 5) {
+        result.textContent = "Game over! You win!";
+    } else if (computerWins == 5) {
+        result.textContent = "Game over! You lose :(";
+    }   
+}
+
 function playRound(playerChoice, computerChoice) {
     const score = document.querySelector("#score");
     const result = document.querySelector("#result");
@@ -44,6 +52,8 @@ function playRound(playerChoice, computerChoice) {
             break;
     }
     score.textContent = `Your score: ${playerWins} Computer score: ${computerWins}`;
+    
+    endGame();
 }
 
 
